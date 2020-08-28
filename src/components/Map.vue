@@ -1,27 +1,21 @@
 <template>
     <div class="container">
-       <!-- <MglMap
-        :access-token="accessToken"
-        :map-style="mapStyle"
-        :center="[longitude, latitude]"
-        :zoom = "zoom"
-        :bearing="bearing"
-        :pitch="pitch"
-        @load="loadLayers"
-        />
-        <canvas id="app"></canvas>-->
         <div id="map" class="map" ref="map"></div>
-        <canvas id="deck-canvas" class="deck-canvas" ref="deck-canvas"></canvas>
+      <!--  <canvas id="deck-canvas" class="deck-canvas" ref="deck-canvas"></canvas>-->
+        <Layers :viewState = 'viewState' :map="this.map"/>
+
     </div>
 </template>
 
 <script>
-    import {Deck} from '@deck.gl/core'
-    import {ScatterplotLayer} from '@deck.gl/layers';
+  /*  import {Deck} from '@deck.gl/core'
+    import {ScatterplotLayer} from '@deck.gl/layers';*/
     import mapbox from 'mapbox-gl';
-    import MglMap from 'vue-mapbox';
+    /*import MglMap from 'vue-mapbox';*/
     import {MapboxLayer} from '@deck.gl/mapbox';
-    const earthquakes = require("../assets/earthquake-data.json");
+  /*  const earthquakes = require("../assets/earthquake-data.json");*/
+    import Layers from "./Layers";
+
 
 
 
@@ -29,7 +23,8 @@
 
     export default {
         components: {
-            MglMap
+          /*  MglMap,*/
+            Layers
         },
         data(){
             return {
@@ -37,14 +32,14 @@
                     /*passing token is insecure, but it is public one and passed for simple test assignment check*/
                     accessToken: "pk.eyJ1Ijoia2FwYzNkIiwiYSI6ImNpbGpodG82czAwMmlubmtxamdsOHF0a3AifQ.xCbMUsy_a_0A9cd4GvjXKQ",
                     mapStyle: 'mapbox://styles/mapbox/light-v9',
-                    mapData: earthquakes,
-                    latitude: 36.08,
-                    longitude: -121.07083,
-                    zoom: 5,
+                    /*mapData: earthquakes,*/
+                    latitude: 21.521757,
+                    longitude: -77.781167,
+                    zoom: 1,
                     bearing: 0,
                     pitch: 0,
                     radius: 300
-                }
+                },
             };
         },
 
@@ -65,7 +60,7 @@
                 bearing: this.viewState.bearing,
             });
 
-            this.deck = new Deck({
+           /* this.deck = new Deck({
                 canvas: 'deck-canvas',
                 width: '100%',
                 height: '100%',
@@ -93,45 +88,16 @@
                     })
                 ]
 
-            });
+            });*/
         },
-
-   /*     computed: {
-            getLayers(){
-               const earthquakeLayer = new ScatterplotLayer({
-                   id: 'scatter-plot',
-                   // data: this.viewState.mapData,
-                   data: [{position: [-121.50217, 37.0705, 0]}],
-                  /!* radiusScale: this.viewState.radius,
-                   radiusMinPixels: 400,*!/
-                   /!*getPosition: d => [Number(d.lng), Number(d.lat)],*!/
-                   getFillColor: [255, 0, 128],
-                   getRadius: 10000
-               });
-               console.log(1)
-               return [earthquakeLayer]
-            }
-        },
-
-        methods: {
-            renderLayers(layers){
-                this.deck.setProps({
-                    layers
-                })
-            }
-        },
-
-        watch: {
-            getLayers(layers){
-                this.renderLayers(layers);
-            }
-        }*/
 
     }
 </script>
 
 <style>
     .container {
+        padding: 0;
+        margin: 0;
         width: 100%;
         height: 100vh;
         position: relative;
@@ -145,11 +111,11 @@
         overflow: hidden;
 
     }
-    .deck-canvas {
+/*    .deck-canvas {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-    }
+    }*/
 </style>
