@@ -4,15 +4,31 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "preinstall": "npx npm-force-resolutions"
   },
   "dependencies": {
+    "@deck.gl/aggregation-layers": "^8.2.6",
+    "@deck.gl/core": "^8.2.6",
+    "@deck.gl/geo-layers": "^8.2.6",
+    "@deck.gl/layers": "^8.2.6",
+    "@deck.gl/mapbox": "^8.2.6",
+    "@deck.gl/mesh-layers": "^8.2.6",
     "core-js": "^3.6.5",
-    "vue": "^2.6.11"
+    "csvtojson": "^2.0.10",
+    "deck.gl": "^8.2.6",
+    "mapbox-gl": "^1.12.0",
+    "serialize-javascript": "^4.0.0",
+    "vue": "^2.6.11",
+    "vue-mapbox": "^0.4.1",
+    "vuex": "^3.5.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "vue-template-compiler": "^2.6.11"
+  },
+  "resolutions": {
+    "serialize-javascript": "^4.0.0"
   }
 }
