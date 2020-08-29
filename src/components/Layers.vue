@@ -31,7 +31,15 @@
         methods:{
             choseLayer(event){
                 this.itemId = event.currentTarget.id;
+                event.currentTarget.classList.add('red');
+                let links = document.querySelectorAll('.layers-menu__item');
+                for (let i = 0; i< links.length; i++){
+                    if(links[i] === event.currentTarget) continue;
+                    links[i].classList.remove('red');
+                }
+
                 if(this.itemId === 'earthquake-layer'){
+
                     this.deck.setProps({
                         layers: [
                             new ScatterplotLayer({

@@ -51,7 +51,11 @@
         font-size: 16px;
         cursor: pointer;
     }
-    .layers-menu__item:hover, .layers-menu__item:focus {
+    .layers-menu__item:hover {
         background-color: rgb(196, 97, 140);
+    }
+    .red{
+        background-color: red;
+
     }
 </style>
