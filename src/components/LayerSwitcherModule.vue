@@ -60,6 +60,7 @@
         list-style: none;
         margin-top: 10px;
         height: 48px;
+        display: flex;
         padding: 10px 0px 0px 10px;
         font-family: Helvetica, sans-serif;
         color: rgb(160, 167, 180);
@@ -67,6 +68,9 @@
         border-radius: 12px;
         font-size: 12px;
         cursor: pointer;
+    }
+    .menu-item__checkbox {
+        display: none;
     }
     .layers-menu__item:hover {
         opacity: 0.33;
