@@ -22,7 +22,6 @@
             return {
                 LAhouses: {},
                 ukCitizens: {},
-                itemId: '',
                 earthquakeStatus: null,
                 ukResidentsStatus: null,
                 laHousesStatus: null
@@ -34,37 +33,19 @@
         },
         methods:{
             choseLayer(event){
-                this.itemId = event.currentTarget.id;
-                event.currentTarget.classList.add('red');
-                let links = document.querySelectorAll('.layers-menu__item');
-                for (let i = 0; i< links.length; i++){
-                    if(links[i] === event.currentTarget) continue;
-                    links[i].classList.remove('red');
+                let links = document.querySelectorAll('.menu-item__checkbox');
+                for (let link of links){
+                    if(link.checked) {
+                        link.parentElement.classList.add('red');
+                        continue;
+                    }
+                    link.parentElement.classList.remove('red');
                 }
 
-                if(this.itemId === 'uk-residents-layer'){
-                    this.ukResidentsStatus = true;
-                    this.render();
-                } else {
-                    this.ukResidentsStatus = false;
-                    this.render();
-                }
-
-                if(this.itemId === 'earthquake-layer'){
-                    this.earthquakeStatus = true;
-                    this.render();
-                } else {
-                    this.earthquakeStatus = false;
-                    this.render();
-                }
-
-                if(this.itemId === 'la-houses-layer'){
-                    this.laHousesStatus = true;
-                    this.render();
-                } else {
-                    this.laHousesStatus = false;
-                    this.render();
-                }
+                this.earthquakeStatus = document.querySelector('#earthquake-layer').checked;
+                this.ukResidentsStatus =document.querySelector('#uk-residents-layer').checked;
+                this.laHousesStatus = document.querySelector('#la-houses-layer').checked;
+                this.render();
 
                 },
 

@@ -2,9 +2,20 @@
     <div class="layers-menu__container">
         <h1>Layers</h1>
         <ul class="layers-menu__list">
-            <li class="layers-menu__item" id="earthquake-layer" @click="$emit('choseLayer', $event)">Earthquakes in California</li>
-            <li class="layers-menu__item" id="la-houses-layer" @click="$emit('choseLayer', $event)">Houses built in Los Angeles since 2006.</li>
-            <li class="layers-menu__item" id="uk-residents-layer" @click="$emit('choseLayer', $event)">UK residents work and residence places</li>
+            <li class="menu-item layers-menu__item">
+                <label for="earthquake-layer">Earthquakes in California</label>
+                <input type="checkbox" class="menu-item__checkbox" id="earthquake-layer" @click="$emit('choseLayer', $event)">
+            </li>
+            <li class="menu-item layers-menu__item">
+                <label for="la-houses-layer">Houses built in Los Angeles since 2006</label>
+                <input type="checkbox" class="menu-item__checkbox" id="la-houses-layer"
+                       @click="$emit('choseLayer', $event)">
+
+            </li>
+            <li class="menu-item layers-menu__item">
+                <label for="uk-residents-layer">UK residents work and residence places</label>
+                <input type="checkbox" class="menu-item__checkbox"  id="uk-residents-layer" @click="$emit('choseLayer', $event)">
+            </li>
         </ul>
     </div>
 </template>
@@ -62,7 +73,6 @@
     }
     .red{
         background-color: rgb(15, 150, 104);
-
 
     }
 </style>
