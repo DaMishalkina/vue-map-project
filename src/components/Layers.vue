@@ -22,7 +22,11 @@
             return {
                 LAhouses: {},
                 ukCitizens: {},
-                itemId: ''
+                itemId: '',
+                earthquakeStatus: null,
+                ukResidentsStatus: null,
+                laHousesStatus: null
+
             }
         },
         created() {
@@ -38,56 +42,71 @@
                     links[i].classList.remove('red');
                 }
 
+                if(this.itemId === 'uk-residents-layer'){
+                    this.ukResidentsStatus = true;
+                    this.render();
+                } else {
+                    this.ukResidentsStatus = false;
+                    this.render();
+                }
+
                 if(this.itemId === 'earthquake-layer'){
+                    this.earthquakeStatus = true;
+                    this.render();
+                } else {
+                    this.earthquakeStatus = false;
+                    this.render();
+                }
 
-                    this.deck.setProps({
-                        layers: [
-                            new ScatterplotLayer({
-                                id: 'earthquake-layer',
-                                data: earthquakes,
-                                visible: true,
-                                radiusScale: 10,
-                                radiusMinPixels: 0.5,
-                                getPosition: d => [Number(d.Longitude), Number(d.Latitude), 0],
-                                getFillColor: [255, 0, 128],
-                                getRadius: 100
-
-                            })
-                        ]
-                    })
-                } if (this.itemId === 'la-houses-layer'){
-                    this.deck.setProps({
-                        layers: [
-                            new ScatterplotLayer({
-                                id: 'la-houses-layer',
-                                data: this.LAhouses,
-                                visible: true,
-                                radiusScale: 10,
-                                radiusMinPixels: 0.5,
-                                getPosition: d => [Number(d.center_lon), Number(d.center_lat), 0],
-                                getFillColor: [128, 255, 0],
-                                getRadius: 100
-                            })
-                        ]
-                    })
-                } if (this.itemId === 'uk-residents-layer'){
-                    this.deck.setProps({
-                        layers: [
-                            new ScatterplotLayer({
-                                id: 'uk-residents-layer',
-                                data: this.ukCitizens,
-                                visible: true,
-                                radiusScale: 10,
-                                radiusMinPixels: 0.5,
-                                getPosition: d => [Number(d.workplace_lng), Number(d.workplace_lat), 0],
-                                getFillColor: [102, 205, 170],
-                                getRadius: 500
-                            })
-                        ]
-                    })
+                if(this.itemId === 'la-houses-layer'){
+                    this.laHousesStatus = true;
+                    this.render();
+                } else {
+                    this.laHousesStatus = false;
+                    this.render();
                 }
 
                 },
+
+            render(){
+                const EarthquakeLayer =   new ScatterplotLayer({
+                    id: 'earthquake-layer',
+                    data: earthquakes,
+                    visible: this.earthquakeStatus,
+                    radiusScale: 10,
+                    radiusMinPixels: 0.5,
+                    getPosition: d => [Number(d.Longitude), Number(d.Latitude), 0],
+                    getFillColor: [255, 0, 128],
+                    getRadius: 100
+
+                });
+                const LaHousesLayer = new ScatterplotLayer({
+                    id: 'la-houses-layer',
+                    data: this.LAhouses,
+                    visible: this.laHousesStatus,
+                    radiusScale: 10,
+                    radiusMinPixels: 0.5,
+                    getPosition: d => [Number(d.center_lon), Number(d.center_lat), 0],
+                    getFillColor: [128, 255, 0],
+                    getRadius: 100
+                });
+
+                const UKresidentsLayer = new ScatterplotLayer({
+                        id: 'uk-residents-layer',
+                        data: this.ukCitizens,
+                        visible: this.ukResidentsStatus,
+                        radiusScale: 10,
+                        radiusMinPixels: 0.5,
+                        getPosition: d => [Number(d.workplace_lng), Number(d.workplace_lat), 0],
+                        getFillColor: [102, 205, 170],
+                        getRadius: 500
+              })
+
+                this.deck.setProps({layers: [UKresidentsLayer, EarthquakeLayer, LaHousesLayer]})
+
+
+
+            },
 
             async fetchData(){
                let LaData = d3.csv("https://raw.githubusercontent.com/uber-web/kepler.gl-data/master/la_assessorparcels/data.csv").then(function (data) {
@@ -118,10 +137,7 @@
                         pitch: viewState.pitch
                     });
                 },
-
-                layers: [
-
-                ]
+                layers: []
 
             });
         }
