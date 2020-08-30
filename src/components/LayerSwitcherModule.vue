@@ -21,24 +21,26 @@
         top: 10px;
         left: 10px;
         padding: 10px;
-        background-color: rgb(169, 169, 169);
+        background-color: rgb(58, 69, 82);
         z-index: 1;
         width: 20%;
         height: 90%;
-        border-radius: 6px;
+        border-radius: 2px;
         box-shadow: 0 2px 110px 0 rgba(0, 0, 0, 0.17);
     }
     h1 {
         margin: 0;
         padding: 0;
+        margin-top: 20px;
         list-style: none;
-        font-family: Roboto, sans-serif;
-        color: #000;
-        text-shadow: 0px 1px 6px #fff;
-        text-align: center;
+        font-family: Helvetica, sans-serif;
+        font-size: 20px;
+        font-weight: lighter;
+        color: #fff;
     }
 
     .layers-menu__list {
+        margin: 0;
         display: flex;
         flex-wrap: wrap;
         padding: 10px;
@@ -46,16 +48,21 @@
     .layers-menu__item {
         list-style: none;
         margin-top: 10px;
-        font-family: Roboto, sans-serif;
-        color: #fff;
-        font-size: 16px;
+        height: 48px;
+        padding: 10px 0px 0px 10px;
+        font-family: Helvetica, sans-serif;
+        color: rgb(160, 167, 180);
+        background-color: rgb(41, 50, 60);
+        border-radius: 12px;
+        font-size: 12px;
         cursor: pointer;
     }
     .layers-menu__item:hover {
-        background-color: rgb(196, 97, 140);
+        opacity: 0.33;
     }
     .red{
-        background-color: red;
+        background-color: rgb(15, 150, 104);
+
 
     }
 </style>
